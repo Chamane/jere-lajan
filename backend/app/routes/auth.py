@@ -49,9 +49,11 @@ def register():
     if User.query.filter_by(username=username).first():
         return jsonify({"error": "Username already exists."}), 409
     
-    hashed_password = generate_password_hash(password)
-
-    new_user = User(username=username, password=hashed_password)
+    new_user = User(
+      username=username, 
+      password=User().generate_hashed_password(password)
+    )
+    
     db.session.add(new_user)
     db.session.commit()
 

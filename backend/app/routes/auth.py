@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 
 from flask_jwt_extended import create_access_token
 
@@ -8,9 +8,9 @@ from app.models import User
 
 from app.extensions import db
 
-auth_bp = Blueprint("auth", __name__)
+auth_bp = Blueprint("user", __name__)
 
-@auth_bp.route("/register", methods=["POST"])
+@auth_bp.route("/add", methods=["POST"])
 def register():
     """
     Register a new user
